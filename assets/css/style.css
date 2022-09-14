@@ -1,0 +1,232 @@
+/* Reset */
+* {
+  /* padding will not add to the ACTUALLY WIDTH OF THE BOX */
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+/* Main Styling */
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7em;
+}
+a {
+  text-decoration: none;
+}
+/* Create Variables */
+:root {
+  --primary-color: #0f0;
+  --secondary-color: #007bff;
+}
+/* use Variables */
+h1 {
+  color: var(--primary-color);
+  width: 100%;
+  font-size: 2rem;
+  margin: 10px;
+  padding: 10px;
+}
+
+i:hover {
+  cursor: pointer;
+}
+.test {
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  background-color: #4e5357;
+  border-radius: 15px;
+  margin: 22px;
+  margin-top: 100px;
+  box-shadow: 5px 4px 9px black;
+}
+#settingsForm,
+#testArea,
+#editArea {
+  display: none;
+}
+
+#innerDiv {
+  width: 90%;
+}
+.enter {
+  text-align: center;
+}
+#typeTestForm,
+#lineForm {
+  max-width: 70%;
+  margin: 14px auto;
+}
+
+#outputDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+#lineOutput {
+  background-color: #151a32;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+}
+#lineInput {
+  font-size: 3rem;
+}
+.typeTest:hover {
+  cursor: pointer;
+}
+#typeTestForm,
+#lineForm {
+  max-width: 90%;
+}
+.active {
+  color: white;
+  box-shadow: 5px 4px 9px black;
+  transform: scale(1.1);
+}
+#typeTestList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 3px;
+  margin: 3px;
+}
+
+h4 {
+  text-align: center;
+}
+nav ul li {
+  list-style: none;
+  background-color: #d0215cbd;
+  color: rgb(0, 0, 0);
+  padding: 3px 10px;
+  margin: 4px 10px;
+  border-radius: 10px 10px 0px 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: color 0.3s, box-shadow 0.7s, transform 0.7s;
+  transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+nav ul li.typeTest:hover {
+  color: rgb(255, 255, 255);
+}
+/* The headings are h3  */
+h3 {
+  color: var(--primary-color);
+  text-shadow: 2px 2px black;
+  text-align: center;
+}
+#typeTestHeading,
+#editHeading {
+  margin: 22px;
+  text-align: center;
+  background-color: #4e5357;
+  border-radius: 15px;
+  padding: 0.45rem;
+  color: var(--primary-color);
+  text-align: center;
+  box-shadow: 5px 4px 9px black;
+}
+.liLine {
+  color: var(--secondary-color);
+}
+.liLine {
+  background-color: white;
+}
+
+.fas {
+  transition: transform 0.7s;
+  transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.fas:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+/* The gap between the show form icons  */
+#typeTestAddBtnIcon,
+#lineEdit {
+  margin: 0px 46px;
+}
+.deleteLine {
+  color: red;
+  margin: 12px;
+}
+/* CODE FOR MESSAGES  */
+.success,
+.error {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  border-radius: 25px;
+  margin: auto;
+}
+.error {
+  color: red;
+}
+.success {
+  color: #2de11d;
+}
+.black {
+  background-color: black;
+}
+.redBorder {
+  border: 20px solid red;
+}
+.greenBorder {
+  border: 20px solid #2de11d;
+}
+/* END CODE FOR MESSAGES  */
+
+/* autoload */
+
+.autoLoad {
+  color: #007bff;
+  font-size: 14px;
+}
+#settingsForm {
+  background-color: white;
+  border: 20px solid white;
+  border-radius: 20px;
+  max-width: 70%;
+  margin: 14px auto;
+}
+.deleteFile {
+  color: red;
+  margin: 12px;
+  transition: transform 0.7s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+.deleteFile:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+.radio {
+  display: flex;
+  flex-direction: row;
+}
+.radio div {
+  margin: 7px;
+}
+.setFlex {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: #aea9ad;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 22px;
+  box-shadow: 5px 4px 9px black;
+}
+@media screen and (max-width: 940px) {
+  .radio {
+    /* display: flex; */
+    flex-direction: column;
+  }
+}
+
+#autoLoadList {
+  margin-left: 45px;
+}
