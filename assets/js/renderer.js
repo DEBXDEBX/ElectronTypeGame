@@ -252,39 +252,41 @@ el.typeTestList.addEventListener("click", (e) => {
 }); //End
 
 el.lineList.addEventListener("click", (e) => {
-  if (!e.ctrlKey) {
-    display.showAlert(
-      "Hold down the control key and click the trash can to delete!",
-      "error",
-      2500
-    );
-    wrongAudio.play();
-    return;
-  }
-  //check if control was down, if so delete
-  if (e.ctrlKey) {
-    // get the index from the html
-    let index = e.target.dataset.index;
-    index = parseInt(index);
-    if (isNaN(index)) {
+  if (e.target.classList.contains("deleteLine")) {
+    if (!e.ctrlKey) {
+      display.showAlert(
+        "Hold down the control key and click the trash can to delete!",
+        "error",
+        2500
+      );
+      wrongAudio.play();
       return;
     }
+    //check if control was down, if so delete
+    if (e.ctrlKey) {
+      // get the index from the html
+      let index = e.target.dataset.index;
+      index = parseInt(index);
+      if (isNaN(index)) {
+        return;
+      }
 
-    arrayOfTypeTests[testIndex].arrayOfStrings.splice(index, 1);
-    deleteAudio.play();
-    display.showAlert("A line was deleted", "success", 1500);
+      arrayOfTypeTests[testIndex].arrayOfStrings.splice(index, 1);
+      deleteAudio.play();
+      display.showAlert("A line was deleted", "success", 1500);
 
-    if (arrayOfTypeTests[testIndex].arrayOfStrings.length === 0) {
-      // typeTestStorage.clearFileFromLocalStorage();
-      // startUp();
-      arrayOfTypeTests[testIndex].arrayOfStrings.push(
-        arrayOfTypeTests[testIndex].name
-      );
+      if (arrayOfTypeTests[testIndex].arrayOfStrings.length === 0) {
+        // typeTestStorage.clearFileFromLocalStorage();
+        // startUp();
+        arrayOfTypeTests[testIndex].arrayOfStrings.push(
+          arrayOfTypeTests[testIndex].name
+        );
+      }
+      currentArray = arrayOfTypeTests[testIndex].arrayOfStrings;
+      display.paintEditList(currentArray);
+      // arrayOfTypeTests[currentArrayIndex].arrayOfStrings =currentArray;
+      saveTest(arrayOfTypeTests[testIndex]);
     }
-    currentArray = arrayOfTypeTests[testIndex].arrayOfStrings;
-    display.paintEditList(currentArray);
-    // arrayOfTypeTests[currentArrayIndex].arrayOfStrings =currentArray;
-    saveTest(arrayOfTypeTests[testIndex]);
   }
 }); //End
 
