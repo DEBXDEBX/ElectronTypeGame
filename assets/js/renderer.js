@@ -320,7 +320,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
 
   if (!newText) {
     wrongAudio.play();
-    display.showAlert("Please enter text in the text area!", "error");
+    display.showAlert("Please enter text in the text input!", "error");
     return;
   }
 
