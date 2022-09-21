@@ -44,5 +44,9 @@ class Elements {
     this.autoLoadCheckBox = document.querySelector("#autoLoadCheckBox");
     this.settingsForm = document.querySelector("#settingsForm");
     this.autoLoadList = document.querySelector("#autoLoadList");
+    // modal
+    this.saveEditedNoteBtn = document.querySelector("#saveEditedNoteBtn");
+    this.editNoteCloseBtn = document.querySelector("#editNoteCloseBtn");
+    this.noteModalTextArea = document.querySelector("#noteModalTextArea");
   }
 }

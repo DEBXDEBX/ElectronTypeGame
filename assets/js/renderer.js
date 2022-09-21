@@ -286,9 +286,61 @@ el.lineList.addEventListener("click", (e) => {
       display.paintEditList(currentArray);
       // arrayOfTypeTests[currentArrayIndex].arrayOfStrings =currentArray;
       saveTest(arrayOfTypeTests[testIndex]);
+      return;
     }
   }
+  if (e.target.classList.contains("editNote")) {
+    // this kicks off the modal
+    // get the index from the html
+    let index = e.target.dataset.index;
+    index = parseInt(index);
+    if (isNaN(index)) {
+      return;
+    }
+    currentArrayIndex = index;
+    const myCurrentLine = currentArray[currentArrayIndex];
+
+    el.noteModalTextArea.value = myCurrentLine;
+    clickAudio.play();
+
+    return;
+  }
 }); //End
+
+// *************************************************************
+//  Edit Note Code
+// *************************************************************
+// when you click on the save edit btn in the modal
+el.saveEditedNoteBtn.addEventListener("click", (e) => {
+  if (isNaN(currentArrayIndex)) {
+    return;
+  }
+
+  const newText = el.noteModalTextArea.value.trim();
+
+  if (!newText) {
+    wrongAudio.play();
+    display.showAlert("Please enter text in the text area!", "error");
+    return;
+  }
+
+  if (newText) {
+    currentArray[currentArrayIndex] = newText;
+  }
+  display.showAlert("Line updated!", "success", 3000);
+  correctAudio.play();
+
+  currentArray = arrayOfTypeTests[testIndex].arrayOfStrings;
+  display.paintEditList(currentArray);
+  currentArrayIndex = 0;
+  // saveAllTests();
+  saveTest(arrayOfTypeTests[testIndex]);
+});
+
+// when you click on the cancel Btn on the edit note form
+el.editNoteCloseBtn.addEventListener("click", (e) => {
+  cancelAudio.play();
+});
 
 // When you click on the edit icon +
 el.addShowFormLineEdit.addEventListener("click", (e) => {
