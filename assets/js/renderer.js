@@ -194,7 +194,7 @@ document.addEventListener("keyup", (e) => {
   if (lineInputValue !== editedText) {
     // You hit the wrong key
     el.lineInputElement.style.color = "red";
-    cancelAudio;
+    sound.cancelAudio.play();
     return;
   }
   el.lineInputElement.style.color = "black";
