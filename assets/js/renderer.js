@@ -10,21 +10,10 @@ let testIndex = -243;
 let settingsArrayContainer = [];
 // Create elements object
 const el = new Elements();
+// create audio object
+const sound = new Audio();
 // Pass elements to display
 const display = new Display(el, $);
-// Select audio
-const warningSelectAudio = document.querySelector("#warningSelectAudio");
-const addImageAudio = document.querySelector("#addImageAudio");
-const addAudio = document.querySelector("#addAudio");
-const btnAudio = document.querySelector("#btnAudio");
-const cancelAudio = document.querySelector("#cancelAudio");
-const correctAudio = document.querySelector("#correctAudio");
-const tabAudio = document.querySelector("#tabAudio");
-const deleteAudio = document.querySelector("#deleteAudio");
-const wrongAudio = document.querySelector("#wrongAudio");
-const addTestAudio = document.querySelector("#addTestAudio");
-const clickAudio = document.querySelector("#clickAudio");
-const restartAudio = document.querySelector("#restartAudio");
 
 //This enables JQuery ToolTips
 $(document).ready(function () {
@@ -71,6 +60,7 @@ window.api.handleShowAlert((event, { message, msgType }) => {
 });
 
 window.api.handleFontSizeChange((event, fontSize) => {
+  sound.btnAudio.play();
   switch (fontSize) {
     case "x-small":
       el.root.style.fontSize = "10px";
@@ -94,7 +84,7 @@ window.api.handleFontSizeChange((event, fontSize) => {
 
 window.api.handleNewTest((event, { name, path }) => {
   if (!name || !path) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("Error creating test Typing test!", "error");
     return;
   }
@@ -129,14 +119,14 @@ window.api.handleNewTest((event, { name, path }) => {
   sortArrayByName(arrayOfTypeTests);
   // save
   saveTest(newTest);
-  addTestAudio.play();
+  sound.addTestAudio.play();
   display.showAlert("A new typing test was added", "success", 1500);
   renderTests();
 }); //End
 
 window.api.handleOpenFile((event, { name, filePath, arrayOfStrings }) => {
   if (!name || !filePath) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("Error creating test Typing test!", "error");
     return;
   }
@@ -172,6 +162,7 @@ window.api.handleOpenFile((event, { name, filePath, arrayOfStrings }) => {
 
 // autoLoad IPC code #######################################################
 window.api.handleShowSettingsForm((event, noData) => {
+  sound.clickAudio.play();
   loadUpSettingsForm();
   display.showSettingsForm();
 });
@@ -188,12 +179,12 @@ document.addEventListener("keyup", (e) => {
   if (key === "Enter") {
     if (currentLine === lineInputValue) {
       //You typed the whole line right!!!!
-      correctAudio.play();
+      sound.correctAudio.play();
       getNewLine();
       return;
     } else {
       //Try again
-      wrongAudio.play();
+      sound.wrongAudio.play();
       return;
     }
   }
@@ -203,7 +194,7 @@ document.addEventListener("keyup", (e) => {
   if (lineInputValue !== editedText) {
     // You hit the wrong key
     el.lineInputElement.style.color = "red";
-    cancelAudio.play();
+    cancelAudio;
     return;
   }
   el.lineInputElement.style.color = "black";
@@ -220,7 +211,7 @@ el.typeTestList.addEventListener("click", (e) => {
     testIndex = index;
 
     arrayOfTypeTests.splice(testIndex, 1);
-    deleteAudio.play();
+    sound.deleteAudio.play();
     display.showAlert("A test was closed", "success", 1500);
 
     renderTests();
@@ -244,7 +235,7 @@ el.typeTestList.addEventListener("click", (e) => {
       return;
     }
     testIndex = index;
-    tabAudio.play();
+    sound.tabAudio.play();
 
     display.displayTestArea();
     loadTestData();
@@ -259,7 +250,7 @@ el.lineList.addEventListener("click", (e) => {
         "error",
         2500
       );
-      wrongAudio.play();
+      sound.wrongAudio.play();
       return;
     }
     //check if control was down, if so delete
@@ -272,7 +263,7 @@ el.lineList.addEventListener("click", (e) => {
       }
 
       arrayOfTypeTests[testIndex].arrayOfStrings.splice(index, 1);
-      deleteAudio.play();
+      sound.deleteAudio.play();
       display.showAlert("A line was deleted", "success", 1500);
 
       if (arrayOfTypeTests[testIndex].arrayOfStrings.length === 0) {
@@ -301,7 +292,7 @@ el.lineList.addEventListener("click", (e) => {
     const myCurrentLine = currentArray[currentArrayIndex];
 
     el.noteModalTextArea.value = myCurrentLine;
-    clickAudio.play();
+    sound.clickAudio.play();
 
     return;
   }
@@ -319,7 +310,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
   const newText = el.noteModalTextArea.value.trim();
 
   if (!newText) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert("Please enter text in the text input!", "error");
     return;
   }
@@ -328,7 +319,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
     currentArray[currentArrayIndex] = newText;
   }
   display.showAlert("Line updated!", "success", 3000);
-  correctAudio.play();
+  sound.correctAudio.play();
 
   currentArray = arrayOfTypeTests[testIndex].arrayOfStrings;
   display.paintEditList(currentArray);
@@ -339,7 +330,7 @@ el.saveEditedNoteBtn.addEventListener("click", (e) => {
 
 // when you click on the cancel Btn on the edit note form
 el.editNoteCloseBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
 });
 
 // When you click on the edit icon +
@@ -348,7 +339,7 @@ el.addShowFormLineEdit.addEventListener("click", (e) => {
     return;
   }
   setSkipTestValue();
-  clickAudio.play();
+  sound.clickAudio.play();
   display.paintEditList(currentArray);
   display.showEditSection();
   textNewLine.focus();
@@ -359,7 +350,7 @@ el.addLineAddBtn.addEventListener("click", (e) => {
   const newLine = el.textNewLine.value.trim();
 
   if (!newLine) {
-    wrongAudio.play();
+    sound.wrongAudio.play();
     display.showAlert(
       "Please enter a line of text for the Typing test!",
       "error"
@@ -369,7 +360,7 @@ el.addLineAddBtn.addEventListener("click", (e) => {
 
   arrayOfTypeTests[testIndex].arrayOfStrings.push(newLine);
 
-  addTestAudio.play();
+  sound.addTestAudio.play();
 
   el.lineForm.reset();
   display.showAlert(
@@ -385,7 +376,7 @@ el.addLineAddBtn.addEventListener("click", (e) => {
 el.exitEditBtn.addEventListener("click", (e) => {
   this.textNewLine.value = "";
   loadTestData();
-  clickAudio.play();
+  sound.clickAudio.play();
   display.hideEditSection();
   renderTests();
   // display.displayHideTestArea();
@@ -436,7 +427,7 @@ const getNewLine = () => {
       `Line ${currentArrayIndex + 1} of ${currentArray.length}`
     );
     el.lineInputElement.value = "";
-    restartAudio.play();
+    sound.restartAudio.play();
     display.showAlert("Great Job! Restarting test.", "success", 2000);
   } else {
     currentArrayIndex++;
@@ -542,7 +533,8 @@ function applySettings(settings) {
 // *************************************************************
 // When You click on settings form add path to autoload Btn
 el.settingsAddPathBtn.addEventListener("click", async (e) => {
-  // addImageAudio.play();
+  //doen't play 1st time
+  sound.addImageAudio.play();
   window.api.showOpenDialog();
 });
 
@@ -560,14 +552,14 @@ window.api.handleAuotLoadPaths((event, fileNames) => {
       settingsArrayContainer.push(filePath);
     }
   }
-  addImageAudio.play();
+  sound.addImageAudio.play();
   display.showAutoLoadList(settingsArrayContainer);
 });
 
 // when You click on save settings Btn
 el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  addAudio.play();
+  sound.addAudio.play();
 
   const fontSizeValue = getRadioValue(el.settingsForm, "fontSize");
   const settingsStorage = new SettingsStorage();
@@ -579,7 +571,7 @@ el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
   settingsObj.autoLoad = el.autoLoadCheckBox.checked;
   // save the object
   settingsStorage.saveSettings(settingsObj);
-  addAudio.play();
+  sound.addAudio.play();
   // reset form
   el.settingsForm.reset();
   if (settingsObj.autoLoad) {
@@ -600,14 +592,14 @@ el.saveSettingsSubmitBtn.addEventListener("click", (e) => {
 
 // when You click on settings form cancel Btn
 el.settingsCancelBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   display.hideSettingsForm();
   renderTests();
 });
 
 // when You click on settings form factory reset btn
 el.factoryResetBtn.addEventListener("click", (e) => {
-  btnAudio.play();
+  sound.btnAudio.play();
   const settingsStorage = new SettingsStorage();
   settingsStorage.clearFileFromLocalStorage();
   loadUpSettingsForm();
@@ -618,7 +610,7 @@ el.autoLoadList.addEventListener("click", (e) => {
   // event delegation
   if (e.target.classList.contains("deleteFile")) {
     if (!e.ctrlKey) {
-      wrongAudio.play();
+      sound.wrongAudio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion",
         "error"
@@ -636,7 +628,7 @@ el.autoLoadList.addEventListener("click", (e) => {
       }
       // delete path
       settingsArrayContainer.splice(deleteIndex, 1);
-      warningSelectAudio.play();
+      sound.warningSelectAudio.play();
       // update Form
       display.showAutoLoadList(settingsArrayContainer);
     }
