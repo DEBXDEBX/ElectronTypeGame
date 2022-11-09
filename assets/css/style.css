@@ -6,20 +6,23 @@
   margin: 0;
   padding: 0;
 }
-/* Main Styling */
-html,
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.7em;
-}
-a {
-  text-decoration: none;
-}
+
 /* Create Variables */
 :root {
   --primary-color: #0f0;
   --secondary-color: #007bff;
 }
+/* Main Styling */
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7em;
+  height: 100vh;
+}
+a {
+  text-decoration: none;
+}
+
 /* use Variables */
 h1 {
   color: var(--primary-color);
@@ -28,9 +31,39 @@ h1 {
   margin: 10px;
   padding: 10px;
 }
-
+/* The headings are h3  */
+h3 {
+  color: var(--primary-color);
+  text-shadow: 2px 2px black;
+  text-align: center;
+}
+h4 {
+  text-align: center;
+}
 i:hover {
   cursor: pointer;
+}
+nav ul li {
+  list-style: none;
+  background-color: #d0215cbd;
+  color: rgb(0, 0, 0);
+  padding: 3px 10px;
+  margin: 4px 10px;
+  border-radius: 10px 10px 0px 0px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  transition: transform 0.9s cubic-bezier(0.45, 1.87, 0.62, 1.6);
+}
+nav ul li.typeTest:hover {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.active {
+  color: white;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 4px 9px black;
+  transform: scale(1.1);
 }
 .test {
   display: flex;
@@ -81,11 +114,7 @@ i:hover {
 #lineForm {
   max-width: 90%;
 }
-.active {
-  color: white;
-  box-shadow: 5px 4px 9px black;
-  transform: scale(1.1);
-}
+
 #typeTestList {
   display: flex;
   flex-wrap: wrap;
@@ -95,30 +124,6 @@ i:hover {
   margin: 3px;
 }
 
-h4 {
-  text-align: center;
-}
-nav ul li {
-  list-style: none;
-  background-color: #d0215cbd;
-  color: rgb(0, 0, 0);
-  padding: 3px 10px;
-  margin: 4px 10px;
-  border-radius: 10px 10px 0px 0px;
-  font-weight: 700;
-  font-size: 1.2rem;
-  transition: color 0.3s, box-shadow 0.7s, transform 0.7s;
-  transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
-}
-nav ul li.typeTest:hover {
-  color: rgb(255, 255, 255);
-}
-/* The headings are h3  */
-h3 {
-  color: var(--primary-color);
-  text-shadow: 2px 2px black;
-  text-align: center;
-}
 #typeTestHeading,
 #editHeading {
   margin: 22px;
@@ -154,31 +159,6 @@ h3 {
   color: red;
   margin: 12px;
 }
-/* CODE FOR MESSAGES  */
-.success,
-.error {
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-  border-radius: 25px;
-  margin: auto;
-}
-.error {
-  color: red;
-}
-.success {
-  color: #2de11d;
-}
-.black {
-  background-color: black;
-}
-.redBorder {
-  border: 20px solid red;
-}
-.greenBorder {
-  border: 20px solid #2de11d;
-}
-/* END CODE FOR MESSAGES  */
 
 /* autoload */
 
@@ -209,6 +189,22 @@ h3 {
 .radio div {
   margin: 7px;
 }
+​input[type="radio"] {
+  margin: 10px;
+  font-size: 16px;
+}
+input[type="radio"]:hover {
+  cursor: pointer;
+}
+input[type="checkbox"] {
+  margin-left: 22px;
+}
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+#autoLoadList {
+  margin-left: 45px;
+}
 .setFlex {
   display: flex;
   flex-direction: column;
@@ -227,6 +223,28 @@ h3 {
   }
 }
 
-#autoLoadList {
-  margin-left: 45px;
+/* CODE FOR MESSAGES  */
+.success,
+.error {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  border-radius: 25px;
+  margin: auto;
 }
+.error {
+  color: red;
+}
+.success {
+  color: #2de11d;
+}
+.black {
+  background-color: black;
+}
+.redBorder {
+  border: 20px solid red;
+}
+.greenBorder {
+  border: 20px solid #2de11d;
+}
+/* END CODE FOR MESSAGES  */
